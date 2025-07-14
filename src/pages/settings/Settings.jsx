@@ -11,29 +11,12 @@ const Settings = () => {
   return (
      <div className="container-fluid gx-0">
       <Header />
+      <div className="col-12 py-2">
       <div className="row justify-content-center">
         <div className="col-xl-6">
           <h1 className="h2 mb-4">Settings</h1>
 
           <div className="row g-4">
-            <div className="col-12">
-              <div className="card shadow-sm">
-                <div className="card-body">
-                  <h5 className="card-title mb-4">Theme</h5>
-                  <div className="d-flex justify-content-between align-items-center">
-                    <span>Dark mode</span>
-                    <div className="form-check form-switch">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="darkModeSwitch"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
             <div className="col-12">
               <div className="card shadow-sm">
                 <div className="card-body">
@@ -80,6 +63,7 @@ const Settings = () => {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   )
