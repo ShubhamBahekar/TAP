@@ -18,13 +18,12 @@ const FocusFlowContextProvider = ({ children }) => {
   );
   const [sessions, setSessions] = useState([]);
 
-  // Network detection effect
+  
   useEffect(() => {
     const updateNetworkStatus = () => {
       setNetworkStatus(navigator.onLine ? "online" : "offline");
     };
 
-    // More reliable network detection using fetch to a reliable endpoint
     const checkNetworkConnectivity = async () => {
       if (!navigator.onLine) {
         setNetworkStatus("offline");
@@ -40,7 +39,7 @@ const FocusFlowContextProvider = ({ children }) => {
         });
         setNetworkStatus(response.ok ? "online" : "offline");
       } catch (error) {
-        // Fallback to a more reliable test
+        
         try {
           await fetch('https://www.google.com/favicon.ico', {
             method: 'HEAD',
@@ -57,17 +56,17 @@ const FocusFlowContextProvider = ({ children }) => {
       }
     };
 
-    // Initial check
+  
     updateNetworkStatus();
 
-    // Listen for online/offline events
+    
     window.addEventListener('online', updateNetworkStatus);
     window.addEventListener('offline', updateNetworkStatus);
 
-    // Periodic connectivity check (every 10 seconds to reduce frequency)
+    
     const connectivityInterval = setInterval(checkNetworkConnectivity, 10000);
 
-    // Cleanup
+  
     return () => {
       window.removeEventListener('online', updateNetworkStatus);
       window.removeEventListener('offline', updateNetworkStatus);

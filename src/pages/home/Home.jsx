@@ -20,7 +20,7 @@ const Home = () => {
   
   const observerRef = useRef(null);
 
-  // Geolocation API - Auto-detect location
+  
   const getCurrentLocation = () => {
     if (!navigator.geolocation) {
       setLocation({ name: "Location not supported", coords: null });
@@ -84,7 +84,7 @@ const Home = () => {
     );
   };
 
-  // Network Information API
+  
   const checkNetworkStatus = () => {
     if (navigator.onLine) {
       setNetworkStatus("online");
@@ -93,7 +93,7 @@ const Home = () => {
     }
   };
 
-  // Intersection Observer API
+  
   const setupIntersectionObserver = () => {
     if (observerRef.current) {
       observerRef.current.disconnect();

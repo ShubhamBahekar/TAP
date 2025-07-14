@@ -11,13 +11,13 @@ const Statistics = () => {
     return sessions.reduce((total, session) => total + session.duration, 0);
   };
 
-  // Calculate streak based on consecutive days meeting daily goal
+  
   const calculateStreak = () => {
-    const dailyGoalSeconds = dailyGoal * 3600; // Convert hours to seconds
+    const dailyGoalSeconds = dailyGoal * 3600;
     const today = new Date();
     let streak = 0;
     
-    // Group sessions by date and calculate daily totals
+    
     const dailyTotals = {};
     sessions.forEach(session => {
       const sessionDate = new Date(session.timestamp).toDateString();
@@ -27,19 +27,19 @@ const Statistics = () => {
       dailyTotals[sessionDate] += session.duration;
     });
 
-    // Check consecutive days starting from today (or yesterday if today's goal isn't met yet)
+    
     let currentDate = new Date(today);
     
-    // Get today's focus time
+  
     const todayString = today.toDateString();
     const todaysFocusTime = dailyTotals[todayString] || 0;
     
-    // If today's goal is not achieved, start from yesterday
+  
     if (todaysFocusTime < dailyGoalSeconds) {
       currentDate.setDate(currentDate.getDate() - 1);
     }
 
-    // Count consecutive days where goal was achieved
+    
     while (true) {
       const dateString = currentDate.toDateString();
       const dayTotal = dailyTotals[dateString] || 0;
@@ -55,7 +55,7 @@ const Statistics = () => {
     return streak;
   };
 
-  // Get activity breakdown with proper grouping
+
   const getActivityBreakdown = () => {
     const activityTotals = sessions.reduce((acc, session) => {
       const activity = session.activity && session.activity.trim() 
@@ -65,7 +65,7 @@ const Statistics = () => {
       return acc;
     }, {});
     
-    // Sort activities by total duration (descending)
+    
     return Object.entries(activityTotals)
       .sort(([, durationA], [, durationB]) => durationB - durationA);
   };

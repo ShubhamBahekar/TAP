@@ -34,13 +34,13 @@ const SessionTracker = () => {
       .reduce((total, session) => total + session.duration, 0);
   };
 
-  // Calculate current streak dynamically
+
   const calculateStreak = () => {
-    const dailyGoalSeconds = dailyGoal * 3600; // Convert hours to seconds
+    const dailyGoalSeconds = dailyGoal * 3600; 
     const today = new Date();
     let streak = 0;
     
-    // Group sessions by date and calculate daily totals
+ 
     const dailyTotals = {};
     sessions.forEach(session => {
       const sessionDate = new Date(session.timestamp).toDateString();
@@ -50,16 +50,15 @@ const SessionTracker = () => {
       dailyTotals[sessionDate] += session.duration;
     });
 
-    // Check consecutive days starting from today (or yesterday if today's goal isn't met yet)
     let currentDate = new Date(today);
     
-    // If today's goal is already achieved, start from today, otherwise start from yesterday
+
     const todaysFocusTime = getTodaysFocusTime();
     if (todaysFocusTime < dailyGoalSeconds) {
       currentDate.setDate(currentDate.getDate() - 1);
     }
 
-    // Count consecutive days where goal was achieved
+
     while (true) {
       const dateString = currentDate.toDateString();
       const dayTotal = dailyTotals[dateString] || 0;
