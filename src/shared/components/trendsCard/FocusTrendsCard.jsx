@@ -47,10 +47,6 @@ const FocusTrendsCard = () => {
         sessionsByDay[dayData.dayName] = (sessionsByDay[dayData.dayName] || 0) + session.duration;
       }
     });
-
-    console.log("Sessions by day:", sessionsByDay);
-    console.log("Goal seconds:", goalSeconds);
-
    
     days.forEach((day, i) => {
       const durationInSeconds = sessionsByDay[day] || 0;
@@ -84,7 +80,6 @@ const FocusTrendsCard = () => {
       ctx.textAlign = "center";
       ctx.fillText(day, x + barWidth/2, canvasHeight - 5);
 
-      console.log(`${day}: ${durationInSeconds}s (${Math.round(durationInSeconds/60)}min), ratio: ${progressRatio.toFixed(2)}, height: ${barHeight}px`);
     });
 
  
